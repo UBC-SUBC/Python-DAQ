@@ -40,6 +40,7 @@ while True:
         euler_tuple = 1/np.cos(np.radians(euler_tuple))
         update_point(euler_tuple)
         plt.show(block=False)
+        plt.pause(1)
 
 
 # plt.show(block=True)
