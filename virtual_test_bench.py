@@ -13,7 +13,8 @@ def update_line(hl, new_data):
 	plt.draw()
  
 def update_point(data):
-    map_ax.plot3D(data[0], data[1], data[2], 'gray')
+    # map_ax.plot3D(data[0], data[1], data[2], 'gray')
+    map_ax.plot(data[0], data[1], data[2], 'gray')
     plt.draw()
     plt.pause(1)
 
