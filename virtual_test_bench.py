@@ -29,16 +29,17 @@ hl, = map_ax.plot3D([0], [0], [0])
 imu = IMU_module()
 
 while True:
-    time.sleep(2)
+    time.sleep(1)
     imu_dict = imu.outputDict()
     print(imu_dict)
     print()
     print(imu_dict["euler"])
     if imu_dict["euler"] != (0, 0, 0) or imu_dict["euler"] != None:
+        print("start plotting")
         euler_tuple = imu_dict["euler"]
         euler_tuple = 1/np.cos(np.radians(euler_tuple))
-        
         update_point(euler_tuple)
+        plt.show(block=False)
 
 
 # plt.show(block=True)
