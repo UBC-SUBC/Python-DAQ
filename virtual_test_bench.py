@@ -15,7 +15,7 @@ def update_line(hl, new_data):
 def update_point(data):
     # map_ax.plot3D(data[0], data[1], data[2], 'gray')
     print(f"Plotting point {data}")
-    map_ax.plot(data[0], data[1], data[2], 'gray')
+    map_ax.plot(data[0], data[1], data[2], 'gray', size=10)
     plt.draw()
     plt.pause(1)
 
@@ -28,9 +28,9 @@ map_ax = fig.add_subplot(111, projection='3d')
 map_ax.autoscale(enable=True, axis='both', tight=True)
 
 # # # Setting the axes properties
-map_ax.set_xlim3d([-10.0, 10.0])
-map_ax.set_ylim3d([-10.0, 10.0])
-map_ax.set_zlim3d([-10.0, 10.0])
+map_ax.set_xlim3d([-8.0, 8.0])
+map_ax.set_ylim3d([-8.0, 8.0])
+map_ax.set_zlim3d([-8.0, 8.0])
 
 hl, = map_ax.plot3D([0], [0], [0])
 
@@ -46,7 +46,7 @@ while True:
     if imu_dict["euler"] != (0, 0, 0) or imu_dict["euler"] != None:
         print("start plotting")
         euler_tuple = imu_dict["euler"]
-        euler_tuple = 1/np.cos(np.radians(euler_tuple))
+        euler_tuple = 5/np.cos(np.radians(euler_tuple))
         update_point(euler_tuple)
         # plt.show(block=False)
         # plt.pause(1)
