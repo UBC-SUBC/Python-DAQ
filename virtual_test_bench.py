@@ -15,7 +15,7 @@ def update_line(hl, new_data):
 def update_point(data):
     map_ax.plot3D(data[0], data[1], data[2], 'gray')
     plt.draw()
-    plt.pause(0.02)
+    plt.pause(1)
 
 
 plt.ion()
@@ -45,7 +45,7 @@ while True:
         euler_tuple = imu_dict["euler"]
         euler_tuple = 1/np.cos(np.radians(euler_tuple))
         update_point(euler_tuple)
-        plt.show(block=False)
+        # plt.show(block=False)
         # plt.pause(1)
 
 
