@@ -30,6 +30,9 @@ imu = IMU_module()
 
 while True:
     imu_dict = imu.outputDict()
+    print(imu_dict)
+    print()
+    print(imu_dict["euler"])
     if imu_dict["euler"] != (0, 0, 0) or imu_dict["euler"] != None:
         euler_tuple = imu_dict["euler"]
         euler_tuple = 1/np.cos(np.radians(euler_tuple))
