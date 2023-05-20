@@ -14,6 +14,7 @@ def update_line(hl, new_data):
  
 def update_point(data):
     # map_ax.plot3D(data[0], data[1], data[2], 'gray')
+    print(f"Plotting point {data}")
     map_ax.plot(data[0], data[1], data[2], 'gray')
     plt.draw()
     plt.pause(1)
@@ -39,7 +40,7 @@ imu = IMU_module()
 while True:
     # time.sleep(1)
     imu_dict = imu.outputDict()
-    print(imu_dict)
+    # print(imu_dict)
     print()
     print(imu_dict["euler"])
     if imu_dict["euler"] != (0, 0, 0) or imu_dict["euler"] != None:
