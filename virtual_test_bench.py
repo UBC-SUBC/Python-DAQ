@@ -2,7 +2,7 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import pyplot as plt
 from imu import IMU_module
-
+import time
 
 def update_line(hl, new_data):
 	xdata, ydata, zdata = hl._verts3d
@@ -29,6 +29,7 @@ hl, = map_ax.plot3D([0], [0], [0])
 imu = IMU_module()
 
 while True:
+    time.sleep(2)
     imu_dict = imu.outputDict()
     print(imu_dict)
     print()
