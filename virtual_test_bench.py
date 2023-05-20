@@ -21,7 +21,8 @@ def update_point(data):
 plt.ion()
 
 fig = plt.figure()
-map_ax = Axes3D(fig)
+# map_ax = Axes3D(fig)
+map_ax = fig.add_subplot(111, projection='3d')
 map_ax.autoscale(enable=True, axis='both', tight=True)
 
 # # # Setting the axes properties
