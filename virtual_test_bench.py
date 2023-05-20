@@ -1,7 +1,7 @@
 import numpy as np 
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import pyplot as plt
-from .imu import IMU_module
+from imu import IMU_module
 
 
 def update_line(hl, new_data):
