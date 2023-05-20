@@ -15,7 +15,7 @@ def update_line(hl, new_data):
 def update_point(data):
     # map_ax.plot3D(data[0], data[1], data[2], 'gray')
     print(f"Plotting point {data}")
-    map_ax.plot(data[0], data[1], data[2], 'gray', size=10)
+    map_ax.plot(data[0], data[1], data[2], 'gray', markersize=10)
     plt.draw()
     plt.pause(1)
 
