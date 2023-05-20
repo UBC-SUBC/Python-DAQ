@@ -1,6 +1,7 @@
 import numpy as np 
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import pyplot as plt
+import matplotlib
 from imu import IMU_module
 import time
 
@@ -13,9 +14,13 @@ def update_line(hl, new_data):
  
 def update_point(data):
     map_ax.plot3D(data[0], data[1], data[2], 'gray')
+    plt.draw()
+    plt.pause(0.02)
 
 
-map = plt.figure()
+plt.ion()
+
+fig = plt.figure()
 map_ax = Axes3D(map)
 map_ax.autoscale(enable=True, axis='both', tight=True)
 
@@ -28,8 +33,9 @@ hl, = map_ax.plot3D([0], [0], [0])
 
 imu = IMU_module()
 
+
 while True:
-    time.sleep(1)
+    # time.sleep(1)
     imu_dict = imu.outputDict()
     print(imu_dict)
     print()
@@ -40,7 +46,7 @@ while True:
         euler_tuple = 1/np.cos(np.radians(euler_tuple))
         update_point(euler_tuple)
         plt.show(block=False)
-        plt.pause(1)
+        # plt.pause(1)
 
 
 # plt.show(block=True)
