@@ -7,3 +7,5 @@ name = "pypi"
 adafruit-circuitpython-bno055 = "*"
 
 [dev-packages]
+matplotlib = "*"
+numpy = "*"
