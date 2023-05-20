@@ -28,9 +28,9 @@ map_ax = fig.add_subplot(111, projection='3d')
 map_ax.autoscale(enable=True, axis='both', tight=True)
 
 # # # Setting the axes properties
-map_ax.set_xlim3d([0.0, 10.0])
-map_ax.set_ylim3d([0.0, 10.0])
-map_ax.set_zlim3d([0.0, 10.0])
+map_ax.set_xlim3d([-10.0, 10.0])
+map_ax.set_ylim3d([-10.0, 10.0])
+map_ax.set_zlim3d([-10.0, 10.0])
 
 hl, = map_ax.plot3D([0], [0], [0])
 
