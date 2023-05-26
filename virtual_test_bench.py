@@ -66,10 +66,11 @@ fig = plt.figure()
 map_ax = fig.add_subplot(111, projection='3d')
 map_ax.autoscale(enable=True, axis='both', tight=True)
 
+limit = 20
 # # # Setting the axes properties
-map_ax.set_xlim3d([-8.0, 8.0])
-map_ax.set_ylim3d([-8.0, 8.0])
-map_ax.set_zlim3d([-8.0, 8.0])
+map_ax.set_xlim3d([-limit, limit])
+map_ax.set_ylim3d([-limit, limit])
+map_ax.set_zlim3d([-limit, limit])
 
 hl, = map_ax.plot3D([0], [0], [0])
 
