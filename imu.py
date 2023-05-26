@@ -6,8 +6,11 @@ import adafruit_bno055
 import RPi.GPIO as GPIO 
 import time
 
-
-#from adafruit_extended_bus import ExtendedI2C as I2C
+#Set Up GPIO Pins
+GPIO.setmode(GPIO.BOARD)
+#Set GPIO_4 (Controls RST) and GPIO_14 (Controls INT) as Outputs 
+GPIO.setup(4,GPIO.OUT)
+GPIO.setup(14,GPIO.OUT)
 
 class IMU_module:
     i2c = board.I2C()  # uses board.SCL and board.SDA
@@ -36,27 +39,19 @@ class IMU_module:
             "linear_acceleration": self.sensor.linear_acceleration,
             "gravity": self.sensor.gravity
         }
-    
-    
         
+    #Reset Absolute Orientation Sensor!
+    def RST_BNO055(self): # toggles GPIO_4 (RPi) --> RST(BNO055)
+        #Hardware reset pin.  Set this pin low then high to cause a reset on the sensor. 
+        GPIO.output(4,GPIO.LOW)
+        #Delay by 1 second
+        time.sleep(1)
+        GPIO.output(4,GPIO.HIGH) 
+        print("~Reset Executed~")
 
 
-    
-# while True:
-#     # print("Temperature: {} degrees C".format(sensor.temperature))
-    
-#     print(
-#         "Temperature: {} degrees C".format(temperature())
-#     )  # Uncomment if using a Raspberry Pi
-    
-#     print("Accelerometer (m/s^2): {}".format(sensor.acceleration))
-#     print("Magnetometer (microteslas): {}".format(sensor.magnetic))
-#     print("Gyroscope (rad/sec): {}".format(sensor.gyro))
-#     print("Euler angle: {}".format(sensor.euler))
-#     print("Quaternion: {}".format(sensor.quaternion))
-#     print("Linear acceleration (m/s^2): {}".format(sensor.linear_acceleration))
-#     print("Gravity (m/s^2): {}".format(sensor.gravity))
-#     print()
 
-    # time.sleep(1)
+
+
+
     

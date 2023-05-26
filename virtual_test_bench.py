@@ -12,9 +12,48 @@ def update_line(hl, new_data):
 	hl.set_3d_properties(list(np.append(zdata, new_data[2])))
 	plt.draw()
  
+ 
+def plot_yaw_ptich_row(euler, ax):
+    euler = np.radians(euler)
+    yaw = euler[0]
+    pitch = euler[1]
+    roll = euler[2]
+    
+    # Plot unit circle
+    u = np.linspace(0, 2 * np.pi, 100)
+    v = np.linspace(0, np.pi, 100)
+    x = 5 * np.outer(np.cos(u), np.sin(v))
+    y = 5 * np.outer(np.sin(u), np.sin(v))
+    z = 5 * np.outer(np.ones(np.size(u)), np.cos(v))
+    ax.plot_surface(x, y, z, color='lightgray', alpha=0.5)
+    
+    # Calculate rotation matrix
+    rotation_matrix = np.array([
+        [np.cos(yaw) * np.cos(pitch),
+        np.cos(yaw) * np.sin(pitch) * np.sin(roll) - np.sin(yaw) * np.cos(roll),
+        np.cos(yaw) * np.sin(pitch) * np.cos(roll) + np.sin(yaw) * np.sin(roll)],
+        [np.sin(yaw) * np.cos(pitch),
+        np.sin(yaw) * np.sin(pitch) * np.sin(roll) + np.cos(yaw) * np.cos(roll),
+        np.sin(yaw) * np.sin(pitch) * np.cos(roll) - np.cos(yaw) * np.sin(roll)],
+        [-np.sin(pitch),
+        np.cos(pitch) * np.sin(roll),
+        np.cos(pitch) * np.cos(roll)]
+    ])
+    
+    # Apply rotation to the unit circle
+    rotated_x, rotated_y, rotated_z = np.dot(rotation_matrix, [x.flatten(), y.flatten(), z.flatten()])
+
+    ax.plot_surface(rotated_x, rotated_y, rotated_z, color='blue', alpha=0.8)
+
+    # Reshape the rotated coordinates
+    rotated_x = np.reshape(rotated_x, x.shape)
+    rotated_y = np.reshape(rotated_y, y.shape)
+    rotated_z = np.reshape(rotated_z, z.shape)
+            
 def update_point(data):
     # map_ax.plot3D(data[0], data[1], data[2], 'gray')
     print(f"Plotting point {data}")
+    
     map_ax.plot(data[0], data[1], data[2], 'gray', markersize=10)
     plt.draw()
     plt.pause(1)
