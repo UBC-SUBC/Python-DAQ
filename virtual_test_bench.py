@@ -87,7 +87,8 @@ while True:
         print("start plotting")
         euler_tuple = imu_dict["euler"]
         euler_tuple = 5/np.cos(np.radians(euler_tuple))
-        update_point(euler_tuple)
+        # update_point(euler_tuple)
+        plot_yaw_ptich_row(imu_dict["euler"], map_ax)
         # plt.show(block=False)
         # plt.pause(1)
 
