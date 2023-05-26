@@ -27,28 +27,31 @@ def plot_yaw_ptich_row(euler, ax):
     z = 5 * np.outer(np.ones(np.size(u)), np.cos(v))
     ax.plot_surface(x, y, z, color='lightgray', alpha=0.5)
     
-    # Calculate rotation matrix
-    rotation_matrix = np.array([
-        [np.cos(yaw) * np.cos(pitch),
-        np.cos(yaw) * np.sin(pitch) * np.sin(roll) - np.sin(yaw) * np.cos(roll),
-        np.cos(yaw) * np.sin(pitch) * np.cos(roll) + np.sin(yaw) * np.sin(roll)],
-        [np.sin(yaw) * np.cos(pitch),
-        np.sin(yaw) * np.sin(pitch) * np.sin(roll) + np.cos(yaw) * np.cos(roll),
-        np.sin(yaw) * np.sin(pitch) * np.cos(roll) - np.cos(yaw) * np.sin(roll)],
-        [-np.sin(pitch),
-        np.cos(pitch) * np.sin(roll),
-        np.cos(pitch) * np.cos(roll)]
-    ])
+    x = np.sin(yaw) * np.sin(pitch) * np.sin(roll) + np.cos(yaw) * np.cos(roll)
+    y = np.sin(yaw) * np.sin(pitch) * np.cos(roll) - np.cos(yaw) * np.sin(roll)
+    z = np.sin(yaw) * np.cos(pitch) * np.sin(roll) + np.cos(yaw) * np.sin(pitch) * np.cos(roll)
+
     
-    # Apply rotation to the unit circle
-    rotated_x, rotated_y, rotated_z = np.dot(rotation_matrix, [x.flatten(), y.flatten(), z.flatten()])
+    # Plot the data
+    ax.plot3D(x, y, z, 'b.')
 
-    ax.plot_surface(rotated_x, rotated_y, rotated_z, color='blue', alpha=0.8)
+    # Set axis labels
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
-    # Reshape the rotated coordinates
-    rotated_x = np.reshape(rotated_x, x.shape)
-    rotated_y = np.reshape(rotated_y, y.shape)
-    rotated_z = np.reshape(rotated_z, z.shape)
+    # Set plot title
+    ax.set_title('Yaw, Pitch, and Roll')
+
+    # # Apply rotation to the unit circle
+    # rotated_x, rotated_y, rotated_z = np.dot(rotation_matrix, [x.flatten(), y.flatten(), z.flatten()])
+
+    # ax.plot_surface(rotated_x, rotated_y, rotated_z, color='blue', alpha=0.8)
+
+    # # Reshape the rotated coordinates
+    # rotated_x = np.reshape(rotated_x, x.shape)
+    # rotated_y = np.reshape(rotated_y, y.shape)
+    # rotated_z = np.reshape(rotated_z, z.shape)
             
 def update_point(data):
     # map_ax.plot3D(data[0], data[1], data[2], 'gray')
