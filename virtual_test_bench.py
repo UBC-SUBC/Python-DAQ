@@ -5,6 +5,8 @@ import matplotlib
 from imu import IMU_module
 import time
 
+count = 0
+
 def update_line(hl, new_data):
 	xdata, ydata, zdata = hl._verts3d
 	hl.set_xdata(list(np.append(xdata, new_data[0])))
@@ -45,6 +47,12 @@ def plot_yaw_ptich_row(euler, ax):
     
     plt.pause(0.00001)
 
+    global count
+    if count > 5:
+        ax.cla()
+        count = 0
+    
+    count += 1
     # # Apply rotation to the unit circle
     # rotated_x, rotated_y, rotated_z = np.dot(rotation_matrix, [x.flatten(), y.flatten(), z.flatten()])
 
@@ -71,7 +79,7 @@ fig = plt.figure()
 map_ax = fig.add_subplot(111, projection='3d')
 map_ax.autoscale(enable=True, axis='both', tight=True)
 
-limit = 20
+limit = 3
 # # # Setting the axes properties
 map_ax.set_xlim3d([-limit, limit])
 map_ax.set_ylim3d([-limit, limit])
