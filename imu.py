@@ -1,10 +1,7 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
-import board 
-import adafruit_bno055 
-import RPi.GPIO as GPIO 
-import time
+
 
 # Set Up GPIO Pins
 # GPIO.setmode(GPIO.BOARD)
@@ -13,6 +10,13 @@ import time
 # GPIO.setup(14,GPIO.OUT)
 
 class IMU_module:
+    
+    import board 
+    import adafruit_bno055 
+    import RPi.GPIO as GPIO 
+    
+    is_dummy = False
+    
     i2c = board.I2C()  # uses board.SCL and board.SDA
     # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
     sensor = adafruit_bno055.BNO055_I2C(i2c)
@@ -50,8 +54,19 @@ class IMU_module:
         print("~Reset Executed~")
 
 
-
-
+class IMU_module_dummy:
+        
+    def outputDict(self):
+        return {
+            "temperature": 0,
+            "acceleration": 0,
+            "magnetic": 0,
+            "gyro": 0,
+            "euler": [0, 0, 0],
+            "quaternion": 0,
+            "linear_acceleration": 0,
+            "gravity": 0,
+        }
 
 
     
