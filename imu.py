@@ -9,8 +9,8 @@ import time
 # Set Up GPIO Pins
 # GPIO.setmode(GPIO.BOARD)
 #Set GPIO_4 (Controls RST) and GPIO_14 (Controls INT) as Outputs 
-GPIO.setup(4,GPIO.OUT)
-GPIO.setup(14,GPIO.OUT)
+# GPIO.setup(4,GPIO.OUT)
+# GPIO.setup(14,GPIO.OUT)
 
 class IMU_module:
     i2c = board.I2C()  # uses board.SCL and board.SDA
