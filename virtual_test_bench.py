@@ -43,7 +43,7 @@ def plot_yaw_ptich_row(euler, ax):
     # Set plot title
     ax.set_title('Yaw, Pitch, and Roll')
     
-    plt.pause(0.1)
+    plt.pause(0.00001)
 
     # # Apply rotation to the unit circle
     # rotated_x, rotated_y, rotated_z = np.dot(rotation_matrix, [x.flatten(), y.flatten(), z.flatten()])
