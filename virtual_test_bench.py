@@ -48,11 +48,11 @@ def plot_yaw_ptich_row(euler, ax):
     plt.pause(0.00001)
 
     global count
-    if count > 5:
-        ax.cla()
-        count = 0
+    # if count > 5:
+    #     ax.cla()
+    #     count = 0
     
-    count += 1
+    # count += 1
     # # Apply rotation to the unit circle
     # rotated_x, rotated_y, rotated_z = np.dot(rotation_matrix, [x.flatten(), y.flatten(), z.flatten()])
 
