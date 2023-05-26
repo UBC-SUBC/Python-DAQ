@@ -77,7 +77,7 @@ plt.ion()
 fig = plt.figure()
 # map_ax = Axes3D(fig)
 map_ax = fig.add_subplot(111, projection='3d')
-map_ax.autoscale(enable=True, axis='both', tight=True)
+# map_ax.autoscale(enable=True, axis='both', tight=True)
 
 limit = 3
 # # # Setting the axes properties
