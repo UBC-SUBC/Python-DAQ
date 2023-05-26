@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 
+from importlib import import_module
 
 # Set Up GPIO Pins
 # GPIO.setmode(GPIO.BOARD)
@@ -10,17 +11,23 @@
 # GPIO.setup(14,GPIO.OUT)
 
 class IMU_module:
+    board = None
+    adafruit_bno055 = None
+    GPIO = None
     
-    import board 
-    import adafruit_bno055 
-    import RPi.GPIO as GPIO 
-    
-    is_dummy = False
-    
-    i2c = board.I2C()  # uses board.SCL and board.SDA
-    # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
-    sensor = adafruit_bno055.BNO055_I2C(i2c)
-    last_val = 0xFFFF
+    def __init__(self) -> None:
+        self.board = import_module("board")
+        self.adafruit_bno055 = import_module("adafruit_bno055")
+        self.GPIO = import_module("RPi.GPIO")
+        # import adafruit_bno055 
+        # import RPi.GPIO as GPIO 
+        
+        self.is_dummy = False
+        
+        self.i2c = self.board.I2C()  # uses board.SCL and board.SDA
+        # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
+        self.sensor = self.adafruit_bno055.BNO055_I2C(self.i2c)
+        self.last_val = 0xFFFF
     
     def temperature(self):
         global last_val  # pylint: disable=global-statement
@@ -47,10 +54,10 @@ class IMU_module:
     #Reset Absolute Orientation Sensor!
     def RST_BNO055(self): # toggles GPIO_4 (RPi) --> RST(BNO055)
         #Hardware reset pin.  Set this pin low then high to cause a reset on the sensor. 
-        GPIO.output(4,GPIO.LOW)
+        self.GPIO.output(4,self.GPIO.LOW)
         #Delay by 1 second
         time.sleep(1)
-        GPIO.output(4,GPIO.HIGH) 
+        self.GPIO.output(4,self.GPIO.HIGH) 
         print("~Reset Executed~")
 
 
