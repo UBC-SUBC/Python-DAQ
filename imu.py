@@ -19,6 +19,12 @@ class IMU_module:
         self.board = import_module("board")
         self.adafruit_bno055 = import_module("adafruit_bno055")
         self.GPIO = import_module("RPi.GPIO")
+        
+        self.reset_pin = 17
+        self.GPIO.setmode(self.GPIO.BCM)
+        self.GPIO.setup(self.reset_pin, self.GPIO.OUT)
+        self.GPIO.output(self.reset_pin, self.GPIO.HIGH)
+        
         # import adafruit_bno055 
         # import RPi.GPIO as GPIO 
         
@@ -55,12 +61,11 @@ class IMU_module:
         
     #Reset Absolute Orientation Sensor!
     def RST_BNO055(self): # toggles GPIO_4 (RPi) --> RST(BNO055)
-        GPIO_rest = 17
         #Hardware reset pin.  Set this pin low then high to cause a reset on the sensor. 
-        self.GPIO.output(GPIO_rest ,self.GPIO.LOW)
+        self.GPIO.output(self.reset_pin ,self.GPIO.LOW)
         #Delay by 1 second
         time.sleep(1)
-        self.GPIO.output(GPIO_rest ,self.GPIO.HIGH) 
+        self.GPIO.output(self.reset_pin ,self.GPIO.HIGH) 
         # Cleanup GPIO resources
         self.GPIO.cleanup()
         print("~Reset Executed~")
