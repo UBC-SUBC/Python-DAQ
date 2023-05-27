@@ -25,6 +25,8 @@ class IMU_module:
         self.GPIO.setup(self.reset_pin, self.GPIO.OUT)
         self.GPIO.output(self.reset_pin, self.GPIO.HIGH)
         
+        self.RST_BNO055()
+        
         # import adafruit_bno055 
         # import RPi.GPIO as GPIO 
         
@@ -35,7 +37,6 @@ class IMU_module:
         self.sensor = self.adafruit_bno055.BNO055_I2C(self.i2c)
         self.last_val = 0xFFFF
         
-        self.RST_BNO055()
     
     def temperature(self):
         global last_val  # pylint: disable=global-statement
@@ -64,7 +65,7 @@ class IMU_module:
         #Hardware reset pin.  Set this pin low then high to cause a reset on the sensor. 
         self.GPIO.output(self.reset_pin ,self.GPIO.LOW)
         #Delay by 1 second
-        time.sleep(1)
+        time.sleep(2)
         self.GPIO.output(self.reset_pin ,self.GPIO.HIGH) 
         # Cleanup GPIO resources
         self.GPIO.cleanup()
