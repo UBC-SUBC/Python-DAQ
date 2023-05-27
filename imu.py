@@ -28,6 +28,8 @@ class IMU_module:
         # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
         self.sensor = self.adafruit_bno055.BNO055_I2C(self.i2c)
         self.last_val = 0xFFFF
+        
+        self.RST_BNO055()
     
     def temperature(self):
         global last_val  # pylint: disable=global-statement
@@ -53,11 +55,14 @@ class IMU_module:
         
     #Reset Absolute Orientation Sensor!
     def RST_BNO055(self): # toggles GPIO_4 (RPi) --> RST(BNO055)
+        GPIO_rest = 17
         #Hardware reset pin.  Set this pin low then high to cause a reset on the sensor. 
-        self.GPIO.output(4,self.GPIO.LOW)
+        self.GPIO.output(GPIO_rest ,self.GPIO.LOW)
         #Delay by 1 second
         time.sleep(1)
-        self.GPIO.output(4,self.GPIO.HIGH) 
+        self.GPIO.output(GPIO_rest ,self.GPIO.HIGH) 
+        # Cleanup GPIO resources
+        self.GPIO.cleanup()
         print("~Reset Executed~")
 
 
