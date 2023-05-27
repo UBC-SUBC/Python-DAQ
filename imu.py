@@ -3,7 +3,7 @@
 
 
 from importlib import import_module
-
+import time
 # Set Up GPIO Pins
 # GPIO.setmode(GPIO.BOARD)
 #Set GPIO_4 (Controls RST) and GPIO_14 (Controls INT) as Outputs 
