@@ -25,7 +25,7 @@ class IMU_module:
         self.GPIO.setup(self.reset_pin, self.GPIO.OUT)
         self.GPIO.output(self.reset_pin, self.GPIO.HIGH)
         
-        self.RST_BNO055()
+        # self.RST_BNO055()
         
         # import adafruit_bno055 
         # import RPi.GPIO as GPIO 
