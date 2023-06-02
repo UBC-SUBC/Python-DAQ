@@ -35,6 +35,7 @@ class IMU_module:
         self.i2c = self.board.I2C()  # uses board.SCL and board.SDA
         # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
         self.sensor = self.adafruit_bno055.BNO055_I2C(self.i2c)
+        self.sensor.mode = self.adafruit_bno055.IMUPLUS_MODE
         self.last_val = 0xFFFF
         
     
