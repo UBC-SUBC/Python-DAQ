@@ -9,3 +9,6 @@ adafruit-circuitpython-bno055 = "*"
 [dev-packages]
 matplotlib = "*"
 numpy = "*"
+
+[rasp]
+adafruit-circuitpython-bno055 = "*"
