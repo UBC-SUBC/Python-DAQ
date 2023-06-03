@@ -31,8 +31,7 @@ class IMU_module:
         # import RPi.GPIO as GPIO 
         
         self.is_dummy = False
-        
-        self.i2c = self.board.I2C()  # uses board.SCL and board.SDA
+        self.i2c = self.board.I2C(scl=self.board.Pin(16), sda=self.board.Pin(15))  # uses board.SCL and board.SDA
         # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
         self.sensor = self.adafruit_bno055.BNO055_I2C(self.i2c)
         self.sensor.mode = self.adafruit_bno055.IMUPLUS_MODE
