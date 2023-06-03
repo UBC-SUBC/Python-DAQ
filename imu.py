@@ -20,7 +20,7 @@ class IMU_module:
         self.adafruit_bno055 = import_module("adafruit_bno055")
         self.GPIO = import_module("RPi.GPIO")
         self.busio = import_module("busio")
-        self.extended_i2c = import_module("adafruit_extended_bus.ExtendedI2C")
+        self.extended_i2c = import_module("adafruit_extended_bus")
         
         # self.reset_pin = 17
         # self.GPIO.setmode(self.GPIO.BCM)
