@@ -12,3 +12,4 @@ numpy = "*"
 
 [rasp]
 adafruit-circuitpython-bno055 = "*"
+smbus2 = "*"
