@@ -9,6 +9,7 @@ class Depth_Sensor:
     
     
     def outputDict(self):
+        self.sensor.read()
         freshwaterDepth = self.sensor.depth() # default is freshwater
         self.sensor.setFluidDensity(self.ms5837.DENSITY_SALTWATER)
         saltwaterDepth = self.sensor.depth() # No nead to read() again
