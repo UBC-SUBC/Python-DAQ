@@ -5,6 +5,7 @@ class Depth_Sensor:
     def __init__(self) -> None:
         self.ms5837 = import_module("ms5837")
         self.sensor = self.ms5837.MS5837_02BA(1)
+        self.sensor.init()
     
     
     def outputDict(self):
