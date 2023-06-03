@@ -13,6 +13,7 @@ class Depth_Sensor:
         saltwaterDepth = self.sensor.depth() # No nead to read() again
         self.sensor.setFluidDensity(1000) # kg/m^3
         print(("Depth: %.3f m (freshwater)  %.3f m (saltwater)") % (freshwaterDepth, saltwaterDepth))
+        print("ATM:",  self.sensor.pressure(self.ms5837.UNITS_atm))
         
         return {
             'fresh_depth': freshwaterDepth,
